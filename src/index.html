@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/hyper-list.esm.js"></script>
+  <script nomodule src="/build/hyper-list.js"></script>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <hyper-list item-height='50'></hyper-list>
+  <script>
+    const hyperlist = document.querySelector('hyper-list')
+    hyperlist.items = Array(500).fill(0).map(() => {
+      return {
+        num: Math.round(Math.random() * 100000000)
+      }
+    })
+    hyperlist.generate = (index) => {
+      const el = document.createElement('div')
+      el.innerHTML = `ITEM ${index + 1}`
+      return el
+      return {
+        element: el,
+        // height: Math.random() * 200
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
