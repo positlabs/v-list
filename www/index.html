@@ -1,0 +1,46 @@
+<!doctype html><html><head> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0"> <script type="module" src="/build/v-list.esm.js"></script> <script nomodule="" src="/build/v-list.js"></script> <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    v-list {
+      width: 500px;
+    }
+
+    v-list div div div {
+      /* padding: 20px 0; */
+    }
+
+  </style> </head> <body> <v-list estimated-row-height="50" row-count="500"></v-list> <script>
+    const list = document.querySelector('v-list')
+    const words =
+      `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`
+      .split(' ')
+
+    const rowCount = parseInt(list.getAttribute('row-count'))
+    list.items = Array(rowCount).fill(0).map(() => {
+      return Array(10 + Math.round(Math.random() * 40)).fill(0).map(() => {
+        return words[Math.floor(Math.random() * words.length)]
+      }).join(' ')
+    })
+    list.generator = (index) => {
+      // console.log('generator', index)
+      const el = document.createElement('div')
+      el.innerHTML = `ITEM ${index + 1} ${list.items[index]}`
+      return el
+    }
+
+  </script> <script>
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // auto-unregister service worker during dev mode
+  navigator.serviceWorker.getRegistration().then(function(registration) {
+    if (registration) {
+      registration.unregister().then(function() { location.reload(true) });
+    }
+  });
+}
+</script></body></html>
