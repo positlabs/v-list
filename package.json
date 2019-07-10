@@ -1,9 +1,9 @@
 {
-  "name": "hyper-list",
+  "name": "v-list",
   "version": "0.0.1",
   "description": "Hyperlist webcomponent",
   "author": "positlabs",
-  "issues": "https://github.com/positlabs/hyper-list/issues",
+  "issues": "https://github.com/positlabs/v-list/issues",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",
@@ -11,7 +11,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/hyper-list/hyper-list.js",
+  "unpkg": "dist/v-list/v-list.js",
   "files": [
     "dist/",
     "loader/"
@@ -27,6 +27,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "hyperlist": "^1.0.0"
+    "virtualized-list": "^2.2.0"
   }
 }

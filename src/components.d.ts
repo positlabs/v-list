@@ -9,63 +9,54 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface HyperList {
-    'afterRender': Function;
-    'applyPatch': Function;
-    /**
-    * Wire up the data to the index. The index is then mapped to a Y position in the container, using some height.   generate(index) {     const el = document.createElement('div');     el.innerHTML = `ITEM ${index + 1}`;     return { element: el, height: Math.random() * 1000 };   }
-    */
-    'generate': Function;
+  interface VList {
+    'estimatedRowHeight': number;
+    'generator': Function;
     'height': number;
-    'horizontal': boolean;
-    'itemHeight': number;
+    'initialIndex': number;
+    'initialScrollTop': number;
     'items': any[];
-    'overrideScrollPosition': boolean;
-    'reverse': boolean;
-    'rowClassName': string;
-    'scroller': HTMLElement;
-    'scrollerTagName': string;
-    'useFragment': boolean;
-    'width': number;
+    'onMount': Function;
+    'onRowsRendered': Function;
+    'overscanCount': number;
+    'renderRow': Function;
+    'rowCount': number;
+    'rowHeight': any;
+    'scrollToIndex': (index: number, alignment?: string) => Promise<void>;
   }
 }
 
 declare global {
 
 
-  interface HTMLHyperListElement extends Components.HyperList, HTMLStencilElement {}
-  var HTMLHyperListElement: {
-    prototype: HTMLHyperListElement;
-    new (): HTMLHyperListElement;
+  interface HTMLVListElement extends Components.VList, HTMLStencilElement {}
+  var HTMLVListElement: {
+    prototype: HTMLVListElement;
+    new (): HTMLVListElement;
   };
   interface HTMLElementTagNameMap {
-    'hyper-list': HTMLHyperListElement;
+    'v-list': HTMLVListElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface HyperList extends JSXBase.HTMLAttributes<HTMLHyperListElement> {
-    'afterRender'?: Function;
-    'applyPatch'?: Function;
-    /**
-    * Wire up the data to the index. The index is then mapped to a Y position in the container, using some height.   generate(index) {     const el = document.createElement('div');     el.innerHTML = `ITEM ${index + 1}`;     return { element: el, height: Math.random() * 1000 };   }
-    */
-    'generate'?: Function;
+  interface VList extends JSXBase.HTMLAttributes<HTMLVListElement> {
+    'estimatedRowHeight'?: number;
+    'generator'?: Function;
     'height'?: number;
-    'horizontal'?: boolean;
-    'itemHeight'?: number;
+    'initialIndex'?: number;
+    'initialScrollTop'?: number;
     'items'?: any[];
-    'overrideScrollPosition'?: boolean;
-    'reverse'?: boolean;
-    'rowClassName'?: string;
-    'scroller'?: HTMLElement;
-    'scrollerTagName'?: string;
-    'useFragment'?: boolean;
-    'width'?: number;
+    'onMount'?: Function;
+    'onRowsRendered'?: Function;
+    'overscanCount'?: number;
+    'renderRow'?: Function;
+    'rowCount'?: number;
+    'rowHeight'?: any;
   }
 
   interface IntrinsicElements {
-    'hyper-list': HyperList;
+    'v-list': VList;
   }
 }
 

@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-  <title>Stencil Component Starter</title>
-
-  <script type="module" src="/build/hyper-list.esm.js"></script>
-  <script nomodule src="/build/hyper-list.js"></script>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0'>
+  <script type="module" src='/build/v-list.esm.js'></script>
+  <script nomodule src='/build/v-list.js'></script>
   <style>
     html,
     body {
@@ -17,28 +13,38 @@
       padding: 0;
     }
 
+    v-list {
+      width: 500px;
+    }
+
+    v-list div div div {
+      padding: 20px 0;
+    }
+
   </style>
 
 </head>
 
 <body>
 
-  <hyper-list item-height='50'></hyper-list>
+  <v-list estimated-row-height='100'></v-list>
+
   <script>
-    const hyperlist = document.querySelector('hyper-list')
-    hyperlist.items = Array(500).fill(0).map(() => {
-      return {
-        num: Math.round(Math.random() * 100000000)
-      }
+    const list = document.querySelector('v-list')
+    const words =
+      `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`
+      .split(' ')
+
+    list.items = Array(500).fill(0).map(() => {
+      return Array(10 + Math.round(Math.random() * 40)).fill(0).map(() => {
+        return words[Math.floor(Math.random() * words.length)]
+      }).join(' ')
     })
-    hyperlist.generate = (index) => {
+    list.generator = (index) => {
+      console.log('generator', index)
       const el = document.createElement('div')
-      el.innerHTML = `ITEM ${index + 1}`
+      el.innerHTML = `ITEM ${index + 1} ${list.items[index]}`
       return el
-      return {
-        element: el,
-        // height: Math.random() * 200
-      }
     }
 
   </script>
