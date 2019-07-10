@@ -15,9 +15,6 @@ export namespace Components {
     'height': number;
     'initialIndex': number;
     'initialScrollTop': number;
-    'items': any[];
-    'onMount': Function;
-    'onRowsRendered': Function;
     'overscanCount': number;
     'renderRow': Function;
     'rowCount': number;
@@ -46,9 +43,8 @@ declare namespace LocalJSX {
     'height'?: number;
     'initialIndex'?: number;
     'initialScrollTop'?: number;
-    'items'?: any[];
-    'onMount'?: Function;
-    'onRowsRendered'?: Function;
+    'onMount'?: (event: CustomEvent<any>) => void;
+    'onRowsRendered'?: (event: CustomEvent<any>) => void;
     'overscanCount'?: number;
     'renderRow'?: Function;
     'rowCount'?: number;
